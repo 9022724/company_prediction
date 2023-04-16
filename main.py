@@ -54,4 +54,4 @@ def read_root(request: Request):
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=8000)
+    uvicorn.run("debug_server:app", host="0.0.0.0", port=80, reload=True)
