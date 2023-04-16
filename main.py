@@ -37,15 +37,6 @@ from sklearn import metrics
 from leadgen_model import do_work
 
 app = FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 templates = Jinja2Templates(directory="templates")
 
 from fastapi import FastAPI, Request, UploadFile, File
