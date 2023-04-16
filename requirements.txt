@@ -1,0 +1,11 @@
+#conda install -c conda-forge xgboost
+pandas
+numpy
+matplotlib
+scikit-learn
+fastapi
+uvicorn
+jinja2
+seaborn
+xgboost
+python-multipart
