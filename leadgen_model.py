@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import numpy as np
 import glob
@@ -30,6 +31,9 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import roc_curve, auc, accuracy_score, precision_recall_fscore_support
 import statistics
 from sklearn import metrics
+
+
+ROOT_DIR = os.path.abspath(os.curdir)
 
 
 def do_work(file1, file2):
@@ -620,7 +624,7 @@ def do_work(file1, file2):
         print(gb_weights_df.sort_values('Weight', ascending=False)[0:20])
 
         gb_weights_df.sort_values('Weight', ascending=False).to_csv(
-            r'/Users/harib/Desktop/Personal/fastapi-hello-world/tmp/Feature Importance' + str(datetime.datetime.now())[
+            rf'{ROOT_DIR}/tmp/Feature Importance' + str(datetime.datetime.now())[
                                                                                           20:], index=False)
 
         GB_optimal_score, GB_optimal_threshold, GB_optimal_predictions_, GB_probabilities_ = optimise_threshold(
@@ -690,7 +694,7 @@ def do_work(file1, file2):
         print(rf_weights_df.sort_values('Weight', ascending=False)[0:20])
 
         rf_weights_df.sort_values('Weight', ascending=False).to_csv(
-            r'/Users/harib/Desktop/Personal/fastapi-hello-world/tmp/Feature Importance' + str(datetime.datetime.now())[
+            rf'{ROOT_DIR}/tmp/Feature Importance' + str(datetime.datetime.now())[
                                                                                           20:], index=False)
 
         RF_optimal_score, RF_optimal_threshold, RF_optimal_predictions_, RF_probabilities_ = optimise_threshold(
@@ -768,7 +772,7 @@ def do_work(file1, file2):
         print(lr_weights_df.sort_values('Weight', ascending=False)[0:20])
 
         lr_weights_df.sort_values('Weight', ascending=False).to_csv(
-            r'/Users/harib/Desktop/Personal/fastapi-hello-world/tmp/Feature Importance' + str(datetime.datetime.now())[
+            rf'{ROOT_DIR}/tmp/Feature Importance' + str(datetime.datetime.now())[
                                                                                           20:], index=False)
 
         LR_optimal_score, LR_optimal_threshold, LR_optimal_predictions_, LR_probabilities_ = optimise_threshold(
@@ -847,7 +851,7 @@ def do_work(file1, file2):
         #     #print(mlpc_weights_df['Weight'][0])
         #     print (mlpc_weights_df['Weight'].sum().sort())
 
-        #     mlpc_weights_df.sort_values('Weight',ascending=False).to_csv (r'/Users/harib/Desktop/Personal/fastapi-hello-world/Feature Importance'+str(datetime.datetime.now())[20:], index = False)
+        #     mlpc_weights_df.sort_values('Weight',ascending=False).to_csv (rf'{ROOT_DIR}/Feature Importance'+str(datetime.datetime.now())[20:], index = False)
 
         MLPC_optimal_score, MLPC_optimal_threshold, MLPC_optimal_predictions_, MLPC_probabilities_ = optimise_threshold(
             mlpc_model, FN_factor, df)
@@ -916,7 +920,7 @@ def do_work(file1, file2):
         print(svm_weights_df.sort_values('Weight', ascending=False)[0:20])
 
         svm_weights_df.sort_values('Weight', ascending=False).to_csv(
-            r'/Users/harib/Desktop/Personal/fastapi-hello-world/tmp/Feature Importance' + str(datetime.datetime.now())[
+            rf'{ROOT_DIR}/tmp/Feature Importance' + str(datetime.datetime.now())[
                                                                                           20:], index=False)
 
         SVM_optimal_score, SVM_optimal_threshold, SVM_optimal_predictions_, SVM_probabilities_ = optimise_threshold(
@@ -993,7 +997,7 @@ def do_work(file1, file2):
         final_weights = pd.concat(weights_array)
         weights_result = final_weights.groupby('Feature').apply(lambda x: x['Weight'].sum()).reset_index(name='Value')
         weights_result.sort_values('Value', ascending=False).to_csv(
-            '/Users/harib/Desktop/Personal/fastapi-hello-world/tmp/Most important Features_' + char_datetime + '.csv')
+            f'{ROOT_DIR}/tmp/Most important Features_' + char_datetime + '.csv')
         weights_result.sort_values('Value', ascending=False)[0:15]
 
     def evaluate_model(X_test, y_test, model, predictions):
@@ -1124,7 +1128,7 @@ def do_work(file1, file2):
         current_datetime = str(datetime.datetime.now())
         char_datetime = re.sub(r'[\W_]', '', str(datetime.datetime.now()))
         char_datetime = char_datetime[:-6]
-        # plt.savefig('/Users/harib/Desktop/Personal/fastapi-hello-world/ROC_Curve_' + char_datetime + '.pdf')
+        # plt.savefig(f'{ROOT_DIR}/ROC_Curve_' + char_datetime + '.pdf')
 
     #     plt.show()
 
@@ -1176,7 +1180,7 @@ def do_work(file1, file2):
         char_datetime = re.sub(r'[\W_]', '', str(datetime.datetime.now()))
         char_datetime = char_datetime[:-6]
         # plt.savefig(
-        #     '/Users/harib/Desktop/Personal/fastapi-hello-world/Ensemble Confusion Matrix_' + char_datetime + '.pdf')
+        #     f'{ROOT_DIR}/Ensemble Confusion Matrix_' + char_datetime + '.pdf')
 
     labels, df, companynames, num_cols, df_trial, df_trial_original = data_preprocessing(file1,file2)
         # "/Users/harib/Desktop/Personal/fastapi-hello-world/Complete MRA 16012023.csv",
@@ -1264,7 +1268,7 @@ def do_work(file1, file2):
     char_datetime = re.sub(r'[\W_]', '', str(datetime.datetime.now()))
     char_datetime = char_datetime[:-6]
     dfresult.sort_values('Opportunity Prediction %', ascending=False).to_csv(
-        '/Users/harib/Desktop/Personal/fastapi-hello-world/tmp/Opportunity Prediction Percentages_' + char_datetime + '.csv')
+        f'{ROOT_DIR}/tmp/Opportunity Prediction Percentages_' + char_datetime + '.csv')
 
     pd.set_option('display.max_rows', 200)
     dfresult.sort_values('Opportunity Prediction %', ascending=False)
@@ -1293,10 +1297,10 @@ def do_work(file1, file2):
     char_datetime = re.sub(r'[\W_]', '', str(datetime.datetime.now()))
     char_datetime = char_datetime[:-6]
     prediction_results.to_csv(
-        '/Users/harib/Desktop/Personal/fastapi-hello-world/tmp/prediction_results_' + char_datetime + '.csv')
+        f'{ROOT_DIR}/tmp/prediction_results_' + char_datetime + '.csv')
 
     current_datetime = str(datetime.datetime.now())
     char_datetime = re.sub(r'[\W_]', '', str(datetime.datetime.now()))
     char_datetime = char_datetime[:-6]
-    df.to_csv('/Users/harib/Desktop/Personal/fastapi-hello-world/tmp/leadgendata_' + char_datetime + '.csv')
+    df.to_csv(f'{ROOT_DIR}/tmp/leadgendata_' + char_datetime + '.csv')
 # do_work()
