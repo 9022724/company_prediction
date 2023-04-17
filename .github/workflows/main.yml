@@ -13,9 +13,9 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install python3-pip python3-dev nginx gunicorn
-        python3 -m venv .env
-        source .env/bin/activate
+        sudo apt-get install python3-pip python3-dev nginx
+        python3 -m venv myprojectenv
+        source myprojectenv/bin/activate
         pip install fastapi uvicorn gunicorn
 
     - name: Test FastAPI server
@@ -56,6 +56,6 @@ jobs:
         port: ${{ secrets.EC2_PORT }}
         script: |
           cd company_prediction
-          source .env/bin/activate
+          source myprojectenv/bin/activate
           pip install -r requirements.txt
           sudo systemctl restart company_prediction.service
