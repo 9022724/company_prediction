@@ -23,7 +23,7 @@ jobs:
       run: |
         gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app -b 0.0.0.0:8000 &
         sleep 3
-        curl http://localhost:8000/docs/
+        curl http://0.0.0.0:8000/docs/
         kill %1
 
     - name: Copy Nginx configuration
