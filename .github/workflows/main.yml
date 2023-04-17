@@ -37,7 +37,7 @@ jobs:
       run: sudo nginx -t
 
     - name: Reload Nginx
-      run: sudo systemctl reload nginx
+      run: sudo systemctl restart nginx
 
     - name: Upload code to EC2
       uses: appleboy/scp-action@master
