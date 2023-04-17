@@ -14,8 +14,10 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install python3-pip python3-dev nginx gunicorn uvicorn
-        python3 -m venv myprojectenv
+        pip install virtualenv
+        virtualenv myprojectenv
         source myprojectenv/bin/activate
+        pip install -r requirements.txt
         pip install fastapi uvicorn gunicorn
 
     - name: Test FastAPI server
