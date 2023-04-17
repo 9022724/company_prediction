@@ -13,7 +13,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install python3-pip python3-dev nginx
+        sudo apt-get install python3-pip python3-dev nginx gunicorn uvicorn
         python3 -m venv myprojectenv
         source myprojectenv/bin/activate
         pip install fastapi uvicorn gunicorn
