@@ -15,11 +15,13 @@ jobs:
         sudo apt-get update
         sudo apt-get install python3-pip python3-dev nginx
         pip install virtualenv
-        ssh ubuntu@16.16.142.183 "source company_prediction/.env/bin/activate"
+        virtualenv myprojectenv
+        source myprojectenv/bin/activate
+        pip install fastapi uvicorn gunicorn
 
     - name: Test FastAPI server
       run: |
-        ssh ubuntu@16.16.142.183 "source company_prediction/.env/bin/activate; cd company_prediction/; pip install -r requirements.txt; gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app"
+        gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app &
         sleep 3
         curl http://localhost:8000/docs/
         kill %1
