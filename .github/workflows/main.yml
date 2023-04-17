@@ -21,6 +21,7 @@ jobs:
 
     - name: Test FastAPI server
       run: |
+        source myprojectenv/bin/activate
         gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app -b 0.0.0.0:8000 &
         sleep 3
         curl http://0.0.0.0:8000/docs/
