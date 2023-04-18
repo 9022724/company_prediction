@@ -41,7 +41,14 @@ jobs:
 
 
     - name: Remove existing directory
-      run: rm -rf /home/ubuntu/company_prediction/
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_PRIVATE_KEY }}
+        port: ${{ secrets.EC2_PORT }}
+        script: |
+          rm -rf /home/ubuntu/company_prediction/
         
 
     - name: Upload code to EC2
