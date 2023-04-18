@@ -73,7 +73,7 @@ jobs:
         script: |
           source /home/ubuntu/company_prediction/myprojectenv/bin/activate
           cd /home/ubuntu/company_prediction
-          sudo apt-get update
-          sudo apt-get install python3-pip python3-dev nginx gunicorn uvicorn
+          sudo apt-get update -y
+          sudo apt-get install -y python3-pip python3-dev nginx gunicorn uvicorn
           pip install -r requirements.txt
           sudo systemctl restart myproject.service
