@@ -1303,4 +1303,6 @@ def do_work(file1, file2):
     char_datetime = re.sub(r'[\W_]', '', str(datetime.datetime.now()))
     char_datetime = char_datetime[:-6]
     df.to_csv(f'{ROOT_DIR}/tmp/leadgendata_' + char_datetime + '.csv')
+
+    return prediction_results
 # do_work()

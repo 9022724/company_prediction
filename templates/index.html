@@ -10,8 +10,18 @@
         <input type="file" name="file2" required>
         <input type="submit" value="Upload">
     </form>
+    
+
+
     {% if message and message is not none %}
-        {{message}}
+        <h1>{{message}}</h1>
+        <h2>Here are the results</h2>
+        <br><br>
+        {{ data|safe }}
     {% endif %}
+
+
+    
+    
 </body>
 </html>

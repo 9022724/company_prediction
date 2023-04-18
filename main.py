@@ -44,8 +44,8 @@ from fastapi import FastAPI, Request, UploadFile, File
 
 @app.post("/", response_class=HTMLResponse)
 def read_root(request: Request, file1: UploadFile = File(...), file2: UploadFile = File(...)):
-    do_work(file1.file, file2.file)
-    return templates.TemplateResponse("index.html", {"request": request, "message": "Request processed successfully"})
+    prediction_results = do_work(file1.file, file2.file)
+    return templates.TemplateResponse("index.html", {"request": request, "message": "Request processed successfully", "data": prediction_results.to_html()})
 
 
 @app.get("/", response_class=HTMLResponse)
