@@ -42,12 +42,12 @@ jobs:
 
     - name: Upload code to EC2
       uses: appleboy/scp-action@master
+      run: rm -rf /home/ubuntu/company_prediction/
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         port: ${{ secrets.EC2_PORT }}
-        run: rm -rf /home/ubuntu/company_prediction/
         source: "./*"
         target: "/home/ubuntu/company_prediction/"
         overwrite: true
