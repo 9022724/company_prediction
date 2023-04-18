@@ -61,4 +61,4 @@ jobs:
           cd company_prediction
           source myprojectenv/bin/activate
           pip install -r requirements.txt
-          sudo systemctl restart company_prediction.service
+          sudo systemctl restart myproject.service
