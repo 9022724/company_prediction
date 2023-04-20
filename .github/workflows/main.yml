@@ -12,8 +12,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt-get update
-        sudo apt-get install python3-pip python3-dev nginx gunicorn uvicorn
+        sudo apt-get update -y
+        sudo apt-get install -y python3-pip python3-dev nginx gunicorn uvicorn
         pip install virtualenv
         virtualenv myprojectenv
         source myprojectenv/bin/activate
@@ -71,9 +71,14 @@ jobs:
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         port: ${{ secrets.EC2_PORT }}
         script: |
-          source /home/ubuntu/company_prediction/myprojectenv/bin/activate
           cd /home/ubuntu/company_prediction
+          source /home/ubuntu/company_prediction/myprojectenv/bin/activate
           sudo apt-get update -y
-          sudo apt-get install -y python3-pip python3-dev nginx gunicorn uvicorn
+          sudo apt-get install -y python3-pip python3-dev nginx
           pip install -r requirements.txt
+          sudo cp /home/ubuntu/company_prediction/myproject.nginx /etc/nginx/sites-available/
+          sudo ln -s /etc/nginx/sites-available/myproject.nginx /etc/nginx/sites-enabled/
+          sudo nginx -t
+          sudo systemctl daemon-reload
           sudo systemctl restart myproject.service
+          sudo systemctl restart nginx
