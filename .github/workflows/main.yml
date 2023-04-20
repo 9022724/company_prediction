@@ -71,6 +71,7 @@ jobs:
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         port: ${{ secrets.EC2_PORT }}
         script: |
+          sudo chown -R ubuntu:ubuntu /home
           cd /home/ubuntu/company_prediction
           mkdir -p tmp
           source /home/ubuntu/company_prediction/myprojectenv/bin/activate
