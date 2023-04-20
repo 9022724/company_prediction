@@ -76,4 +76,5 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y python3-pip python3-dev nginx gunicorn uvicorn
           pip install -r requirements.txt
+          sudo systemctl daemon-reload
           sudo systemctl restart myproject.service
