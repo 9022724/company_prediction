@@ -72,6 +72,7 @@ jobs:
         port: ${{ secrets.EC2_PORT }}
         script: |
           cd /home/ubuntu/company_prediction
+          mkdir -p tmp
           source /home/ubuntu/company_prediction/myprojectenv/bin/activate
           sudo apt-get update -y
           sudo apt-get install -y python3-pip python3-dev nginx
