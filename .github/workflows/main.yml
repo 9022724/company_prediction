@@ -71,12 +71,13 @@ jobs:
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         port: ${{ secrets.EC2_PORT }}
         script: |
-          source /home/ubuntu/company_prediction/myprojectenv/bin/activate
           cd /home/ubuntu/company_prediction
-          sudo apt-get update -y
-          sudo apt-get install -y python3-pip python3-dev nginx gunicorn uvicorn
           sudo chown -R ubuntu:ubuntu /home/ubuntu/company_prediction/myprojectenv/bin/
-          pip install gunicorn
+          source /home/ubuntu/company_prediction/myprojectenv/bin/activate
+          sudo apt-get update -y
+          sudo apt-get install -y python3-pip python3-dev nginx
+          sudo chown -R ubuntu:ubuntu /home/ubuntu/company_prediction/myprojectenv/bin/
+          source /home/ubuntu/company_prediction/myprojectenv/bin/activate
           pip install -r requirements.txt
           sudo systemctl daemon-reload
           sudo systemctl restart myproject.service
