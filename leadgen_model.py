@@ -36,7 +36,7 @@ from sklearn import metrics
 ROOT_DIR = os.path.abspath(os.curdir)
 
 
-def do_work(file1, file2):
+def do_work(file1, file2, model_type):
     def adjusted_classes(y_scores, t):
         """
         This function adjusts class predictions based on the prediction threshold (t).

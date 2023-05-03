@@ -32,13 +32,22 @@
           enctype="multipart/form-data" method="post">
         <div style="display: flex; justify-content: space-around;align-items: center;margin-bottom: 20px;">
             <label style="margin-right: 10px; font-size: 16px; line-height: 20px; font-weight: 400;"
-                   for="f1">Please Input file Completed MRA: </label>
+                   for="f1">Completed MRA file: </label>
             <input id="f1" type="file" name="file1" required="">
         </div>
         <div style="display: flex; justify-content: space-around;align-items: center; margin-bottom: 20px;">
             <label style="margin-right: 10px; font-size: 16px; line-height: 20px; font-weight: 400;"
-                   for="f2">Please Input file Completed MRA: </label>
+                   for="f2">Latest Sample Shortlisted file: </label>
             <input id="f2" type="file" name="file2" required="">
+        </div>
+        <div style="display: flex; justify-content: center;align-items: center; margin-bottom: 20px;">
+        <label style="margin-right: 10px; font-size: 16px; line-height: 20px; font-weight: 400;"
+                   for="model">Choose a model type:</label>
+         <select class="form-select-auto" name="model_type" id="model" required="">
+            <option value="partnership">Partnership</option>
+            <option value="iot">IOT</option>
+            <option value="cloudcomm">Cloudcomm</option>
+         </select>
         </div>
         <div style="display: flex; justify-content: center;align-items: center;">
             <input class="btn btn-primary" type="submit" value="Upload">
