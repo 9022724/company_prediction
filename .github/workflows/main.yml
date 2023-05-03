@@ -79,9 +79,9 @@ jobs:
           sudo apt-get install -y python3-pip python3-dev nginx uvicorn gunicorn
           source /home/ubuntu/company_prediction/myprojectenv/bin/activate
           pip install -r requirements.txt
-          sudo cp /home/ubuntu/company_prediction/myproject.nginx /etc/nginx/sites-available/
-          sudo ln -s /etc/nginx/sites-available/myproject.nginx /etc/nginx/sites-enabled/
-          sudo nginx -t
+#          sudo cp /home/ubuntu/company_prediction/myproject.nginx /etc/nginx/sites-available/
+#          sudo ln -s /etc/nginx/sites-available/myproject.nginx /etc/nginx/sites-enabled/
+#          sudo nginx -t
           sudo systemctl daemon-reload
           sudo systemctl restart myproject.service
           sudo systemctl restart nginx
