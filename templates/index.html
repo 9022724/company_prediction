@@ -26,53 +26,21 @@
     </style>
 </head>
 <body data-new-gr-c-s-check-loaded="14.1105.0" data-gr-ext-installed="">
-<div style="padding: 50px;">
-    <h1 style="margin-right: 10px; font-size: 25px; line-height: 45px; font-weight: 600;">Upload a CSV file</h1>
-    <form style="width:800px;padding: 30px; margin: 50px auto;box-shadow: 3px 3px 3px 3px #dddddd;"
-          enctype="multipart/form-data" method="post">
-        <div style="display: flex; justify-content: space-around;align-items: center; margin-bottom: 20px;">
-            <label style="margin-right: 10px; font-size: 16px; line-height: 20px; font-weight: 400;"
-                   for="api_key">API KEY </label>
-            <input id="api_key" type="text" name="api_key" required="">
-            {% if error and error is not none %}
-            <p>{{ error_message }}</p>
-            {% endif %}
-        </div>
-        
-        <div style="display: flex; justify-content: space-around;align-items: center;margin-bottom: 20px;">
-            <label style="margin-right: 10px; font-size: 16px; line-height: 20px; font-weight: 400;"
-                   for="f1">Completed MRA file: </label>
-            <input id="f1" type="file" name="file1" required="">
-        </div>
-        <div style="display: flex; justify-content: space-around;align-items: center; margin-bottom: 20px;">
-            <label style="margin-right: 10px; font-size: 16px; line-height: 20px; font-weight: 400;"
-                   for="f2">Latest Sample Shortlisted file: </label>
-            <input id="f2" type="file" name="file2" required="">
-        </div>
-        <div style="display: flex; justify-content: center;align-items: center; margin-bottom: 20px;">
-        <label style="margin-right: 10px; font-size: 16px; line-height: 20px; font-weight: 400;"
-                   for="model">Choose a model type:</label>
-         <select class="form-select-auto" name="model_type" id="model" required="">
-            <option value="partnership">Partnership</option>
-            <option value="iot">IOT</option>
-            <option value="cloudcomm">Cloudcomm</option>
-         </select>
-        </div>
-        <div style="display: flex; justify-content: center;align-items: center;">
-            <input class="btn btn-primary" type="submit" value="Upload">
-        </div>
-    </form>
-
-    {% if message and message is not none %}
-        <h1 style="margin-right: 10px; font-size: 25px; line-height: 45px; font-weight: 600;">{{ message }}</h1>
-        <h2 style="margin-right: 10px; font-size: 20px; line-height: 35px; font-weight: 600;">Here are the results</h2>
-        <br><br>
-        {{ data|safe }}
-    {% endif %}
-
-
-   
+<div class="row p-5">
+    <div class="col-3" style="align-items: center;display: flex;justify-content: space-between;flex-direction: column;">
+        <a href="/leadtoopp">Home</a>
+    </div>
+    <div class="col-3" style="align-items: center;display: flex;justify-content: space-between;flex-direction: column;">
+        <a href="/leadtoopp/generateapikey">Generate API Key</a>
+    </div>
+    <div class="col-3" style="align-items: center;display: flex;justify-content: space-between;flex-direction: column;">
+        <a href="/leadtoopp/regeneratemodel">Regenerate</a>
+    </div>
+        <div class="col-3" style="align-items: center;display: flex;justify-content: space-between;flex-direction: column;">
+        <a href="/leadtoopp/oppornot">oppornot</a>
+    </div>
 
 </div>
+
 </body>
 </html>

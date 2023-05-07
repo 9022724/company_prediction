@@ -40,6 +40,9 @@ ROOT_DIR = os.path.abspath(os.curdir)
 
 
 def regenerate_model(file):
+
+    filenames = []
+
     def adjusted_classes(y_scores, t):
         """
         This function adjusts class predictions based on the prediction threshold (t).
@@ -926,8 +929,9 @@ def regenerate_model(file):
                          xgb_weights_df]
         final_weights = pd.concat(weights_array)
         weights_result = final_weights.groupby('Feature').apply(lambda x: x['Weight'].sum()).reset_index(name='Value')
-        weights_result.sort_values('Value', ascending=False).to_csv(
-            f'{ROOT_DIR}/tmp/Most important Features_' + char_datetime + '.csv')
+        most_important_features = f'{ROOT_DIR}/tmp/Most important Features_' + char_datetime + '.csv'
+        filenames.append(most_important_features)
+        weights_result.sort_values('Value', ascending=False).to_csv(most_important_features)
         weights_result.sort_values('Value', ascending=False)[0:15]
 
     def evaluate_model(X_test, y_test, model, predictions):
@@ -1032,7 +1036,9 @@ def regenerate_model(file):
         current_datetime = str(datetime.datetime.now())
         char_datetime = re.sub(r'[\W_]', '', str(datetime.datetime.now()))
         char_datetime = char_datetime[:-6]
-        plt.savefig(f'{ROOT_DIR}/tmp/Accuracy_Precision_Recall_F1_' + char_datetime + '.pdf')
+        accuracy_precision_recall = f'{ROOT_DIR}/tmp/Accuracy_Precision_Recall_F1_' + char_datetime + '.pdf'
+        filenames.append(accuracy_precision_recall)
+        plt.savefig(accuracy_precision_recall)
         # #     plt.show()
 
         mean_fpr = np.linspace(start=0, stop=1, num=100)
@@ -1062,7 +1068,9 @@ def regenerate_model(file):
         current_datetime = str(datetime.datetime.now())
         char_datetime = re.sub(r'[\W_]', '', str(datetime.datetime.now()))
         char_datetime = char_datetime[:-6]
-        plt.savefig(f'{ROOT_DIR}/tmp/ROC_Curve_' + char_datetime + '.pdf')
+        roc_curve = f'{ROOT_DIR}/tmp/ROC_Curve_' + char_datetime + '.pdf'
+        filenames.append(roc_curve)
+        plt.savefig(roc_curve)
 
 
 
@@ -1115,8 +1123,9 @@ def regenerate_model(file):
         current_datetime = str(datetime.datetime.now())
         char_datetime = re.sub(r'[\W_]', '', str(datetime.datetime.now()))
         char_datetime = char_datetime[:-6]
-        plt.savefig(
-            f'{ROOT_DIR}/tmp/Ensemble Confusion Matrix_' + char_datetime + '.pdf')
+        ensemble_confusion_matrix = f'{ROOT_DIR}/tmp/Ensemble Confusion Matrix_' + char_datetime + '.pdf'
+        filenames.append(ensemble_confusion_matrix)
+        plt.savefig(ensemble_confusion_matrix)
     
 
     labels, df, companynames, num_cols = data_preprocessing(file)
@@ -1202,8 +1211,9 @@ def regenerate_model(file):
     current_datetime = str(datetime.datetime.now())
     char_datetime = re.sub(r'[\W_]', '', str(datetime.datetime.now()))
     char_datetime = char_datetime[:-6]
-    dfresult.sort_values('Opportunity Prediction %', ascending=False).to_csv(
-        f'{ROOT_DIR}/tmp/Opportunity Prediction Percentages_' + char_datetime + '.csv')
+    opportunity_prediction_percentages = f'{ROOT_DIR}/tmp/Opportunity Prediction Percentages_' + char_datetime + '.csv'
+    filenames.append(opportunity_prediction_percentages)
+    dfresult.sort_values('Opportunity Prediction %', ascending=False).to_csv(opportunity_prediction_percentages)
 
     pd.set_option('display.max_rows', 200)
     dfresult.sort_values('Opportunity Prediction %', ascending=False)
@@ -1211,7 +1221,9 @@ def regenerate_model(file):
     current_datetime = str(datetime.datetime.now())
     char_datetime = re.sub(r'[\W_]', '', str(datetime.datetime.now()))
     char_datetime = char_datetime[:-6]
-    df.to_csv(f'{ROOT_DIR}/tmp/leadgendata_' + char_datetime + '.csv')
+    leadgendata = f'{ROOT_DIR}/tmp/leadgendata_' + char_datetime + '.csv'
+    filenames.append(leadgendata)
+    df.to_csv(leadgendata)
 
 
     ensumble_learning(AB_optimal_score, DT_optimal_score, ET_optimal_score, GB_optimal_score, LR_optimal_score,
@@ -1236,4 +1248,7 @@ def regenerate_model(file):
     plt.yticks(fontsize=14)
     plt.ylabel('Actual Label', fontsize=14)
     plt.xlabel('Predicted Label', fontsize=14)
-    plt.savefig(f'{ROOT_DIR}/tmp/Voting_Confusion_Matrix_' + char_datetime + '.pdf')
+    voting_confusion_matrix_file_path = f'{ROOT_DIR}/tmp/Voting_Confusion_Matrix_' + char_datetime + '.pdf'
+    filenames.append(voting_confusion_matrix_file_path)
+    plt.savefig(voting_confusion_matrix_file_path)
+    return filenames
