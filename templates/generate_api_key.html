@@ -14,10 +14,10 @@
         <a href="/leadtoopp/generateapikey">Generate API Key</a>
     </div>
     <div class="col-3" style="align-items: center;display: flex;justify-content: space-between;flex-direction: column;">
-        <a href="/leadtoopp/regeneratemodel">Regenerate</a>
+        <a href="/leadtoopp/regeneratemodel">Regenerate Model</a>
     </div>
     <div class="col-3" style="align-items: center;display: flex;justify-content: space-between;flex-direction: column;">
-        <a href="/leadtoopp/oppornot">oppornot</a>
+        <a href="/leadtoopp/oppornot">Check Companies</a>
     </div>
 </div>
 <div style="padding: 50px;">
@@ -26,14 +26,14 @@
           enctype="multipart/form-data" method="post">
         <div style="display: flex; justify-content: space-around;align-items: center; margin-bottom: 20px;">
             <label style="margin-right: 10px; font-size: 16px; line-height: 20px; font-weight: 400;"
-                   for="master_api_key">MAster API KEY </label>
-            <input id="master_api_key" type="text" name="master_api_key" required="">
+                   for="master_api_key">Enter Code to Generate API Key</label>
+            <input id="master_api_key" type="text" name="master_api_key" required="" autocomplete="off">
             {% if error and error is not none %}
                 <p>{{ error_message }}</p>
             {% endif %}
         </div>
         <div style="display: flex; justify-content: center;align-items: center;">
-            <input class="btn btn-primary" type="submit" value="Upload">
+            <input class="btn btn-primary" type="submit" value="Generate Key">
         </div>
     </form>
 

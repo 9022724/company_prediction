@@ -5,6 +5,7 @@ numpy
 matplotlib
 scikit-learn
 fastapi
+python-dotenv
 uvicorn
 jinja2
 seaborn
