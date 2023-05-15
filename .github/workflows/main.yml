@@ -30,6 +30,7 @@ jobs:
 
     - name: Copy Nginx configuration
       run: |
+        sudo cp .env.example .env
         sudo cp myproject.nginx /etc/nginx/sites-available/
         sudo ln -s /etc/nginx/sites-available/myproject.nginx /etc/nginx/sites-enabled/
 
@@ -73,6 +74,7 @@ jobs:
         script: |
           sudo chown -R ubuntu:ubuntu /home
           cd /home/ubuntu/company_prediction
+          sudo cp .env.example .env
           mkdir -p tmp
           source /home/ubuntu/company_prediction/myprojectenv/bin/activate
           sudo apt-get update -y

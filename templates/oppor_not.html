@@ -34,21 +34,21 @@
         <a href="/leadtoopp/generateapikey">Generate API Key</a>
     </div>
     <div class="col-3" style="align-items: center;display: flex;justify-content: space-between;flex-direction: column;">
-        <a href="/leadtoopp/regeneratemodel">Regenerate</a>
+        <a href="/leadtoopp/regeneratemodel">Regenerate Model</a>
     </div>
     <div class="col-3" style="align-items: center;display: flex;justify-content: space-between;flex-direction: column;">
-        <a href="/leadtoopp/oppornot">oppornot</a>
+        <a href="/leadtoopp/oppornot">Check Companies</a>
     </div>
 
 </div>
 <div style="padding: 50px;">
-    <h1 style="margin-right: 10px; font-size: 25px; line-height: 45px; font-weight: 600;">Opp or not</h1>
+    <h1 style="margin-right: 10px; font-size: 25px; line-height: 45px; font-weight: 600;">Upload a file of companies to judge the likelihood of these companies becoming opportunities</h1>
     <form style="width:800px;padding: 30px; margin: 50px auto;box-shadow: 3px 3px 3px 3px #dddddd;"
           enctype="multipart/form-data" method="post">
         <div style="display: flex; justify-content: space-around;align-items: center; margin-bottom: 20px;">
             <label style="margin-right: 10px; font-size: 16px; line-height: 20px; font-weight: 400;"
                    for="api_key">API KEY </label>
-            <input id="api_key" type="text" name="api_key" required="">
+            <input id="api_key" type="text" name="api_key" required="" autocomplete="off">
             {% if error and error is not none %}
                 <p>{{ error_message }}</p>
             {% endif %}

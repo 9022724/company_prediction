@@ -3,7 +3,9 @@ import json
 import shutil
 import zipfile
 import tempfile
+from dotenv import load_dotenv
 from pathlib import Path
+
 
 from oppornot import oppornot
 from regenerate_model import regenerate_model
@@ -17,7 +19,10 @@ import secrets
 import os
 from leadgen_model import do_work
 
-MASTER_API_KEY = "448ab670efcfccc8f66f1236538219d6e705bb929116365a17e3abaa55731e68"
+
+load_dotenv()
+
+MASTER_API_KEY = os.getenv('MASTER_API_KEY')
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -95,18 +100,20 @@ def regeneratemodel(request: Request, file: UploadFile = File(...), api_key: str
         if accept and "text/html" in accept:
             return templates.TemplateResponse("regenerate_model.html",
                                               {"request": request, "message": "Models has been regenerated \
-                                                                                You can start using <b>oppornot</b> API.",
+                                                                                You can start using oppornot API.",
                                                 "error": False, "status_code": 200, "files": filenames })
         else:
             return JSONResponse(content={"status_code": 200, "message": "Models has been regenerated. \
-                                                                        You can start using <b>oppornot</b> API."})
+                                                                        You can start using oppornot API.",
+                                         "files": filenames})
     except:
         if accept and "text/html" in accept:
             return templates.TemplateResponse("regenerate_model.html",
-                                              {"request": request, "message": "File Parsing Failed.",
-                                                "error": True, "status_code": 400 })
+                                              {"request": request,
+                                               "message": "Model Generation in Progress - please wait.",
+                                               "error": True, "status_code": 400 })
         else:
-            return JSONResponse(content={"status_code": 400, "message": "File Parsing Failed."})
+            return JSONResponse(content={"status_code": 400, "message": "Model Generation in Progress - please wait."})
 
 
 @app.post("/leadtoopp/oppornot", response_class=HTMLResponse)
